@@ -28,3 +28,6 @@ class ClaseNodo:
 
     def verificarRaiz(self):
         return self.hijoIzquierdo is None and self.hijoDerecho is None
+    
+    def eshoja(self):
+        return self.hijoIzquierdo is None and self.hijoDerecho is None
