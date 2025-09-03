@@ -213,6 +213,75 @@ class ArbolBinario:
     def isVacio(self):
         return self.raiz is None
 
+#------------------------------------------------------------------------------------------------------------------
+   #ALTURA DEL ARBOL
+   # Recursivo 
+    def Altura(self):
+        return self._Altura_Recursivo(self.raiz)
+    
+    def _Altura_Recursivo(self, nodoActual):
+        if nodoActual is None:
+            return -1 #Si el nodo es None, retorna -1 (altura de un arbol vacio)
+        izquierda= self._Altura_Recursivo(nodoActual.hijoIzquierdo)
+        derecha= self._Altura_Recursivo(nodoActual.hijoDerecho)
+        return 1 + max(izquierda, derecha)
+    
+    #Iterativo
+    def Altura_Iterativo(self):
+        if self.isVacio(): #Si el arbol esta vacio, no tiene altura
+            return 0 #Devuelve 0
+        Contaltura= -1 #Contador de niveles de altura
+        cola=[self.raiz] #Cola para almacenar los nodos por nivel BFS(Busqueda en anchura)
+        while cola: #Mientras haya nodos en la cola
+            nivelTamano= len (cola) #Numero de nodos en el nivel actual
+            for _ in range(nivelTamano): #Procesa todos los nodos en el nivel actual
+                nodo= cola.pop(0) #Saca el primer nodo de la cola
+                if nodo.hijoIzquierdo is not None: #Si tiene hijo izquierdo
+                    cola.append(nodo.hijoIzquierdo) #Lo agrega a la cola 
+                if nodo.hijoDerecho is not None: #Si tiene hijo derecho
+                    cola.append(nodo.hijoDerecho) #Lo agrega a la cola
+            Contaltura += 1 #Incrementa 1 en 1 la altura despues de procesar un nivel completo
+        return Contaltura #Retorna la altura total del arbol
+        
+#--------------------------------------------------------------------------------------------------------------------------
+ #Amplitud del Arbol (Numero maximo de nodos en cualquier nivel del arbol)
+  #Recursivo
+    def _Amplitud_Recursivo(self):
+        Niveles= []
+        altura= self.Altura()
+        for nivelTam in range(altura + 1):
+            Nodo_nivel= []
+            self._Recorrido_Nivel(self.raiz,nivelTam, Nodo_nivel)
+            Niveles.append(len(Nodo_nivel))
+        return max(Niveles) if Niveles else 0
+    
+    def _Recorrido_Nivel(self, nodoActual, nivel, resultado):
+        if nodoActual is None:
+            return 
+        if nivel==0:
+            resultado.append(nodoActual.obtener_valor())
+        else:
+            self._Recorrido_Nivel(nodoActual.hijoIzquierdo, nivel -1, resultado)
+            self._Recorrido_Nivel(nodoActual.hijoDerecho, nivel -1, resultado)    
+  
+  #Iterativo
+    def Amplitud_Iterativo(self):
+        if self.isVacio():
+            return 0
+        max_amplitud= 0 #Variable para guardar el maximo de nodos en cualquier nivel     
+        cola = [self.raiz] #Cola para almacenar los nodos por nivel BFS(Busqueda en anchura)
+        while cola: #Mientras haya nodos por nivel en la cola
+            nivelTamano = len(cola) #NUmero de nodos en el nivel actual
+            if nivelTamano > max_amplitud: #Si este nivel tiene mas nodos que el max_amplitud 
+                max_amplitud = nivelTamano #Actualiza el max_amplitud
+            for _ in range(nivelTamano): #Procesa todos los nodos en el nivel actual
+               nodo= cola.pop(0) #Saca el primer nodo de la cola
+               if nodo.hijoIzquierdo is not None: #Si tiene hijo izquierdo
+                   cola.append(nodo.hijoIzquierdo) #Lo agrega a la cola
+               if nodo.hijoDerecho is not None: #Si tiene hijo derecho
+                    cola.append(nodo.hijoDerecho) #Lo agrega a la cola
+        return max_amplitud #Retorna la amplitud maxima del arbol
+                                           
 #-----------------------------------------------------------------------------------------------------------------
 # Muestra el arbol en General
 if __name__ == "__main__":
@@ -245,3 +314,9 @@ if __name__ == "__main__":
     print("Recorrido PreOrden Iterativo:", arbol1.PreOrdenIterativo())
     print("Recorrido PostOrden Recursivo:", arbol1.PostOrdenRecursivo())
     print("Recorrido PostOrden Iterativo:", arbol1.PostOrdenIterativo())
+    #Prueba de Altura
+    print("Altura del Arbol (Recursivo):", arbol1.Altura())
+    print("Altura del Arbol (Iterativo):", arbol1.Altura_Iterativo())
+    #Prueba de Amplitud
+    print("Amplitud del Arbol (Recursivo):", arbol1._Amplitud_Recursivo())
+    print("Amplitud del Arbol (Iterativo):", arbol1.Amplitud_Iterativo())
