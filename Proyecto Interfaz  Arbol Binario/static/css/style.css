@@ -1,0 +1,304 @@
+/* static/css/style.css - VERSIÓN CORREGIDA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+    color: #e0e0e0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 30px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 2px solid #00ff00;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    color: #00ff00;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px #00ff00;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #00ff00;
+    opacity: 0.8;
+    font-size: 1.2em;
+}
+
+/* Layout principal */
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+/* Paneles */
+.operations-panel, .results-panel {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #00ffcc;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 0 20px #00ffcc55;
+    backdrop-filter: blur(10px);
+}
+
+.operations-panel h2, .results-panel h2 {
+    color: #ff00ff;
+    border-bottom: 2px solid #00ffcc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+/* Grupos de operaciones */
+.operation-group {
+    margin-bottom: 25px;
+}
+
+.operation-group h3 {
+    color: #00ffcc;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* Forms */
+form {
+    margin-bottom: 15px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    background: #0d0d0d;
+    border: 1px solid #00ffcc;
+    border-radius: 8px;
+    color: #00ffcc;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+input[type="number"]::placeholder {
+    color: #00ffcc;
+    opacity: 0.6;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #00ffcc, #00aaff);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Courier New', monospace;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+/* Botones de utilidad */
+.utility-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.utility-buttons button {
+    font-size: 0.9em;
+    padding: 10px;
+}
+
+/* Área de mensajes */
+.message-area {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.message-area.info {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    color: #00ffff;
+}
+
+.message-area.success {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.message-area.error {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff0000;
+    color: #ff0000;
+}
+
+/* Tarjetas de información */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.info-card {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.info-card h4 {
+    color: #00ffff;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.info-card span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+/* Estructura del árbol */
+.tree-structure {
+    background: #111;
+    border: 1px solid #00aaff;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #0ff;
+    font-family: 'Courier New', monospace;
+}
+
+.tree-structure h3 {
+    color: #00aaff;
+    margin-bottom: 10px;
+}
+
+#treeDisplay {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Recorridos */
+.traversals-section {
+    margin: 20px 0;
+}
+
+.traversal-item {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255, 0, 255, 0.1);
+    border: 1px solid #ff00ff;
+    border-radius: 5px;
+}
+
+.traversal-item strong {
+    color: #ff00ff;
+}
+
+/* Contenedor del árbol D3 - CORREGIDO */
+#tree {
+    min-height: 600px;
+    width: 100%;
+    border: 2px dashed #00ffcc;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(0, 255, 204, 0.05);
+    overflow: auto;
+    position: relative;
+}
+
+#tree svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Estilos para los elementos D3 */
+.node circle {
+    fill: #4CAF50;
+    stroke: #fff;
+    stroke-width: 2px;
+    r: 15px;
+}
+
+.node text {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    fill: white;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+.node.highlighted circle {
+    fill: #FFD700 !important;
+    stroke: #FFA500;
+    stroke-width: 3px;
+}
+
+/* Asegurar que el panel de resultados tenga suficiente espacio */
+.results-panel {
+    min-height: 800px;
+    overflow: visible;
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .utility-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    #tree {
+        min-height: 500px;
+        padding: 15px;
+    }
+    
+    .results-panel {
+        min-height: 700px;
+    }
+}

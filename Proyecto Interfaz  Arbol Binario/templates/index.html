@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol Binario - Interfaz Gráfica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Árbol Binario de Búsqueda</h1>
+            <p>Visualizador del ABB💻</p>
+        </header>
+
+        <main>
+            <!-- Panel de Operaciones -->
+            <section class="operations-panel">
+                <h2>⚙️ Operaciones</h2>
+
+                <div class="operation-group">
+                    <h3>➕ Insertar / ❌ Eliminar / 🔍 Buscar</h3>
+
+                    <!-- Insertar -->
+                    <form id="insertForm">
+                        <input type="number" id="insertValue" name="valor" placeholder="Ingresa un número" required>
+                        <button type="submit">Insertar</button>
+                    </form>
+
+                    <!-- Eliminar -->
+                    <form id="deleteForm">
+                        <input type="number" id="deleteValue" name="valor" placeholder="Valor a eliminar" required>
+                        <button type="submit">Eliminar</button>
+                    </form>
+
+                    <!-- Buscar -->
+                    <form id="searchForm">
+                        <input type="number" id="searchValue" name="valor" placeholder="Valor a buscar" required>
+                        <button type="submit">Buscar</button>
+                    </form>
+                </div>
+
+                <!-- Botones de Utilidad -->
+                <div class="utility-buttons">
+                    <button id="showTraversals">🧭 Ver Recorridos</button>
+                    <button id="showInfo">ℹ️ Información</button>
+                    <button id="loadExample">📥 Cargar Ejemplo</button>
+                    <button id="clearTree">🗑️ Limpiar Árbol</button>
+                </div>
+            </section>
+
+            <!-- Panel de Resultados -->
+            <section class="results-panel">
+                <h2>📊 Resultados</h2>
+
+                <!-- Área de mensajes -->
+                <div id="messageArea" class="message-area"></div>
+
+                <!-- Información del árbol -->
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h4>🌿 Nodos</h4>
+                        <span id="nodosCount">0</span>
+                    </div>
+                    <div class="info-card">
+                        <h4>📏 Altura</h4>
+                        <span id="alturaTree">0</span>
+                    </div>
+                    <div class="info-card">
+                        <h4>📡 Estado</h4>
+                        <span id="estadoTree">Vacío</span>
+                    </div>
+                </div>
+
+                <!-- Estructura del árbol -->
+                <div class="tree-structure">
+                    <h3>🌐 Estructura del Árbol</h3>
+                    <pre id="estructuraTexto">Árbol vacío</pre>
+                </div>
+
+                <!-- Sección de recorridos -->
+                <div class="traversals-section" id="traversalsSection" style="display:none;">
+                    <h3>🧾 Recorridos</h3>
+                    <div class="traversal-item">
+                        <strong>Preorden:</strong> <span id="preorder"></span>
+                    </div>
+                    <div class="traversal-item">
+                        <strong>Inorden:</strong> <span id="inorder"></span>
+                    </div>
+                    <div class="traversal-item">
+                        <strong>Postorden:</strong> <span id="postorder"></span>
+                    </div>
+                </div>
+                <!-- Gráfico del Árbol -->
+                <div id="tree"></div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
